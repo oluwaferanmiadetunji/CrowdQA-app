@@ -1,0 +1,33 @@
+import { lazy } from 'react';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { AppRoutes } from 'lib/constants';
+import Page404 from 'pages/Page404';
+
+const Home = lazy(() => import('pages/home'));
+const Signup = lazy(() => import('pages/signup'));
+const Login = lazy(() => import('pages/login'));
+
+const router = createBrowserRouter([
+  {
+    path: AppRoutes.HOME,
+    element: <Home />,
+  },
+  {
+    path: AppRoutes.SIGNUP,
+    element: <Signup />,
+  },
+  {
+    path: AppRoutes.LOGIN,
+    element: <Login />,
+  },
+  {
+    path: AppRoutes.ALL,
+    element: <Page404 />,
+  },
+]);
+
+const Routes = () => {
+  return <RouterProvider router={router} />;
+};
+
+export default Routes;

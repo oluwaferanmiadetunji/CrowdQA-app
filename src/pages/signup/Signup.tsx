@@ -10,11 +10,22 @@ import Typography from '@mui/material/Typography';
 import styles from './styles';
 import { AppRoutes } from 'lib/constants';
 import { Link, useNavigate } from 'react-router-dom';
-
 import { createUser } from 'lib/api/users';
 import { toast } from 'react-toastify';
+import JoiningAsParticipant from 'components/joining-as-participant';
 
-export default function SignInSide() {
+const inputLabelProps = {
+  style: {
+    color: 'white',
+    opacity: '0.6',
+  },
+};
+
+const inputStyle = {
+  color: 'white',
+};
+
+export default function Signup() {
   const [isLoading, setLoading] = React.useState(false);
   const navigate = useNavigate();
 
@@ -23,6 +34,7 @@ export default function SignInSide() {
     const data = new FormData(event.currentTarget);
     const payload: any = { email: data.get('email'), password: data.get('password'), name: data.get('name') };
     setLoading(true);
+
     try {
       await createUser(payload);
       toast.success('Account created successfully!');
@@ -76,6 +88,11 @@ export default function SignInSide() {
               autoFocus
               variant="standard"
               size="small"
+              color="secondary"
+              InputLabelProps={inputLabelProps}
+              InputProps={{
+                style: inputStyle,
+              }}
             />
             <TextField
               margin="normal"
@@ -87,6 +104,12 @@ export default function SignInSide() {
               autoComplete="email"
               variant="standard"
               size="small"
+              color="secondary"
+              InputLabelProps={inputLabelProps}
+              InputProps={{
+                style: inputStyle,
+              }}
+              type="email"
             />
             <TextField
               margin="normal"
@@ -99,11 +122,18 @@ export default function SignInSide() {
               autoComplete="current-password"
               variant="standard"
               size="small"
+              color="secondary"
+              InputLabelProps={inputLabelProps}
+              InputProps={{
+                style: inputStyle,
+              }}
             />
 
-            <Button type="submit" fullWidth variant="contained" sx={styles.submit}>
+            <Button type="submit" color="secondary" fullWidth variant="contained" sx={styles.submit}>
               {isLoading ? <CircularProgress size={24} sx={{ color: 'white' }} /> : 'Create Account'}
             </Button>
+
+            <JoiningAsParticipant/>
           </Box>
         </Box>
       </Grid>

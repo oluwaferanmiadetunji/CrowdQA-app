@@ -10,9 +10,11 @@ import Typography from '@mui/material/Typography';
 import styles from './styles';
 import { AppRoutes } from 'lib/constants';
 import { Link, useNavigate } from 'react-router-dom';
-import { createUser } from 'lib/api/users';
 import { toast } from 'react-toastify';
 import JoiningAsParticipant from 'components/joining-as-participant';
+import { useDispatch, useSelector } from 'react-redux';
+import { useRegisterMutation } from 'lib/redux/users.api.slice';
+import { setCredentials } from 'lib/redux/auth.slice';
 
 const inputLabelProps = {
   style: {
@@ -26,22 +28,41 @@ const inputStyle = {
 };
 
 export default function Signup() {
-  const [isLoading, setLoading] = React.useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const [register, { isLoading }] = useRegisterMutation();
+
+  const { userInfo } = useSelector((state: any) => state.auth);
+
+  React.useEffect(() => {
+    if (userInfo) {
+      navigate(AppRoutes.HOME);
+    }
+  }, [navigate, userInfo]);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const payload: any = { email: data.get('email'), password: data.get('password'), name: data.get('name') };
-    setLoading(true);
+
+    const payload: any = {
+      email: data.get('email'),
+      password: data.get('password'),
+      name: data.get('name'),
+    };
 
     try {
-      await createUser(payload);
+      const res = await register(payload).unwrap();
+
+      dispatch(setCredentials({ ...res }));
+
       toast.success('Account created successfully!');
-      setLoading(false);
-      navigate(AppRoutes.LOGIN);
-    } catch (err) {
-      setLoading(false);
+
+      navigate(AppRoutes.HOME);
+    } catch (error) {
+      const err: any = error;
+
+      toast.error(err?.data?.error);
     }
   };
 
@@ -133,7 +154,7 @@ export default function Signup() {
               {isLoading ? <CircularProgress size={24} sx={{ color: 'white' }} /> : 'Create Account'}
             </Button>
 
-            <JoiningAsParticipant/>
+            <JoiningAsParticipant />
           </Box>
         </Box>
       </Grid>

@@ -13,7 +13,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import JoiningAsParticipant from 'components/joining-as-participant';
 import { useDispatch, useSelector } from 'react-redux';
-import { useRegisterMutation } from 'lib/redux/users.api.slice';
+import { useRegisterMutation } from 'lib/redux/auth.api.slice';
 import { setCredentials } from 'lib/redux/auth.slice';
 
 const inputLabelProps = {
@@ -55,7 +55,6 @@ export default function Signup() {
       const res = await register(payload).unwrap();
 
       dispatch(setCredentials({ ...res }));
-
       toast.success('Account created successfully!');
 
       navigate(AppRoutes.HOME);

@@ -13,7 +13,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import JoiningAsParticipant from 'components/joining-as-participant';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLoginMutation } from 'lib/redux/users.api.slice';
+import { useLoginMutation } from 'lib/redux/auth.api.slice';
 import { setCredentials } from 'lib/redux/auth.slice';
 
 const inputLabelProps = {

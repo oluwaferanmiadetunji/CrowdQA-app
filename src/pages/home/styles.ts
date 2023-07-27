@@ -20,10 +20,12 @@ const styles = {
     marginBottom: '20px',
   },
   welcomeImage: {
-    width: '300px',
-    height: '300px',
+    width: '250px',
+    height: '250px',
     '& img': {
       objectFit: 'ceontain',
+      width: '250px',
+      height: '250px',
     },
   },
   createEventButton: {

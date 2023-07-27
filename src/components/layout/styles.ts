@@ -30,7 +30,7 @@ const styles = {
   content: {
     display: 'flex',
     marginTop: '60px',
-    height: 'calc(100vw - 60vh)',
+    height: 'calc(100vw - 60px)',
     overflowY: 'auto',
     overflowX: 'hidden',
   },

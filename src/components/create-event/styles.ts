@@ -1,7 +1,7 @@
 const styles = {
  
   dates: {
-    marginBottom: '30px',
+    marginTop: '20px',
     display: 'flex',
     justifyContent: 'space-between',
   },
@@ -9,6 +9,7 @@ const styles = {
     padding: '20px',
     display: 'flex',
     justifyContent: 'space-between',
+    marginTop: '10px',
   },
   info: {
     fontSize: '13px',

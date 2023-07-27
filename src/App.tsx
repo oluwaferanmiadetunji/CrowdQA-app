@@ -28,6 +28,8 @@ function App() {
                 newestOnTop={false}
                 closeOnClick
                 theme="dark"
+                pauseOnFocusLoss={false}
+                pauseOnHover={false}
               />
             </QueryClientProvider>
           </Suspense>

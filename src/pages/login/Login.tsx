@@ -41,7 +41,6 @@ export default function Login() {
     }
   }, [navigate, userInfo]);
 
-
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -53,14 +52,16 @@ export default function Login() {
 
     try {
       const res = await login(payload).unwrap();
-      
 
       dispatch(setCredentials({ ...res }));
+
       toast.success('Login successful!');
 
       navigate(AppRoutes.HOME);
     } catch (error) {
       const err: any = error;
+
+      console.log(err);
 
       toast.error(err?.data?.error);
     }

@@ -33,3 +33,5 @@ export const formatDate = (
   date: string | number | Date | dayjs.Dayjs | null | undefined,
   format = 'MMM D, YYYY  hh:mm:ss A'
 ) => dayjs(date).format(format);
+
+export const getFirstName = (name: string) => name.split(' ')[0]

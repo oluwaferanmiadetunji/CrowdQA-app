@@ -20,28 +20,22 @@ const CreateEvent = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
   const history = useNavigate();
 
-  const params = queryString.parse(location.search);
-
   const handleClickOpen = () => {
+    const params = queryString.parse(location.search);
     setOpen(true);
+    history({
+      search: queryString.stringify({ ...params, event: 'new' }),
+    });
   };
 
   const handleClose = () => {
     setOpen(false);
+    const params = queryString.parse(location.search);
+    delete params.event;
+    history({
+      search: queryString.stringify(params),
+    });
   };
-
-  React.useEffect(() => {
-    if (open) {
-      history({
-        search: queryString.stringify({ ...params, event: 'new' }),
-      });
-    } else {
-      delete params.event;
-      history({
-        search: queryString.stringify(params),
-      });
-    }
-  }, [history, open, params]);
 
   const [startDate, setStartDate] = React.useState<Dayjs | null>(dayjs(new Date()));
   const [endDate, setEndDate] = React.useState<Dayjs | null>(dayjs(new Date().setDate(new Date().getDate() + 3)));

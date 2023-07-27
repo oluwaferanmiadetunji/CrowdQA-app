@@ -19,14 +19,14 @@ export default function FormDialog() {
     setOpen(true);
     const params = queryString.parse(location.search);
     history({
-      search: queryString.stringify({ ...params, joining: 'participant' }),
+      search: queryString.stringify({ ...params, join: 'participant' }),
     });
   };
 
   const handleClose = () => {
     setOpen(false);
     const params = queryString.parse(location.search);
-    delete params.joining;
+    delete params.join;
     history({
       search: queryString.stringify(params),
     });

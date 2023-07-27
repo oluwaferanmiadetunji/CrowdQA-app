@@ -7,7 +7,6 @@ export const apiSlice = createApi({
   baseQuery,
   tagTypes: ['Auth'],
   endpoints: (builder) => ({}),
-  
 });
 
 export const authApiSlice = apiSlice.injectEndpoints({
@@ -19,12 +18,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
-    logout: builder.mutation({
-      query: () => ({
-        url: `/auth/logout`,
-        method: 'POST',
-      }),
-    }),
+
     register: builder.mutation({
       query: (data) => ({
         url: `/users`,
@@ -35,4 +29,4 @@ export const authApiSlice = apiSlice.injectEndpoints({
   }),
 });
 
-export const { useLoginMutation, useLogoutMutation, useRegisterMutation } = authApiSlice;
+export const { useLoginMutation, useRegisterMutation } = authApiSlice;

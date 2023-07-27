@@ -14,6 +14,7 @@ export default function Input(theme: any) {
             opacity: 1,
             color: theme.palette.primary,
           },
+          height: '20px',
         },
       },
     },

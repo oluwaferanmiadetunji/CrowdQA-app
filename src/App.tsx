@@ -7,6 +7,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import ThemeProvider from 'components/theme';
 import store from 'lib/redux';
 import { Provider } from 'react-redux';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
 function App() {
   const queryClient = new QueryClient();
@@ -14,20 +16,22 @@ function App() {
   return (
     <Provider store={store}>
       <ThemeProvider>
-        <Suspense fallback={<Loader />}>
-          <QueryClientProvider client={queryClient}>
-            <Routes />
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <Suspense fallback={<Loader />}>
+            <QueryClientProvider client={queryClient}>
+              <Routes />
 
-            <ToastContainer
-              position="top-right"
-              autoClose={5000}
-              hideProgressBar
-              newestOnTop={false}
-              closeOnClick
-              theme="dark"
-            />
-          </QueryClientProvider>
-        </Suspense>
+              <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar
+                newestOnTop={false}
+                closeOnClick
+                theme="dark"
+              />
+            </QueryClientProvider>
+          </Suspense>
+        </LocalizationProvider>
       </ThemeProvider>
     </Provider>
   );

@@ -11,14 +11,21 @@ import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
 function App() {
-  const queryClient = new QueryClient();
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        retry: false,
+        refetchOnWindowFocus: false,
+      },
+    },
+  });
 
   return (
     <Provider store={store}>
       <ThemeProvider>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <Suspense fallback={<Loader />}>
-            <QueryClientProvider client={queryClient}>
+            <QueryClientProvider client={queryClient} contextSharing>
               <Routes />
 
               <ToastContainer

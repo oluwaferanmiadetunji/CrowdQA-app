@@ -8,12 +8,13 @@ import Typography from '@mui/material/Typography';
 import { getFirstName } from 'lib/helpers';
 import CreateEvent from 'components/create-event';
 import AddIcon from '@mui/icons-material/Add';
+import ActiveEvents from './components/active-events';
 
 const Home = () => {
   const { userInfo } = useSelector((state: any) => state.auth);
 
   return (
-    <Layout>
+    <Layout sidebar>
       <Box sx={styles.container}>
         <Card sx={styles.welcome}>
           <Box>
@@ -35,6 +36,8 @@ const Home = () => {
             <img src="/assets/welcome.svg" alt="welcome" />
           </Box>
         </Card>
+
+        <ActiveEvents />
       </Box>
     </Layout>
   );

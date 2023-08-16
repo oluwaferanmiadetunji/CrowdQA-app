@@ -36,18 +36,22 @@ const CreateEvent = ({ children }: { children: React.ReactNode }) => {
     });
   };
 
+  const [startDate, setStartDate] = React.useState<any>(dayjs(new Date()));
+  const [endDate, setEndDate] = React.useState<any>(dayjs(new Date().setDate(new Date().getDate() + 3)));
+  const [name, setName] = React.useState('');
+
   const handleClose = () => {
     setOpen(false);
+    setName('');
+    setEndDate(dayjs(new Date().setDate(new Date().getDate() + 3)));
+    setStartDate(dayjs(new Date()));
+    
     const params = queryString.parse(location.search);
     delete params.event;
     history({
       search: queryString.stringify(params),
     });
   };
-
-  const [startDate, setStartDate] = React.useState<any>(dayjs(new Date()));
-  const [endDate, setEndDate] = React.useState<any>(dayjs(new Date().setDate(new Date().getDate() + 3)));
-  const [name, setName] = React.useState('');
 
   const [createEvent, { isLoading }] = useCreateEventMutation();
 

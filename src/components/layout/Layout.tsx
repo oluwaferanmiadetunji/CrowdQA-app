@@ -8,7 +8,7 @@ import Sidebar from './Sidebar';
 import HeaderMenu from './Menu';
 import styles from './styles';
 
-function Layout({ children }: { children: React.ReactNode }) {
+function Layout({ children, sidebar = true }: { children: React.ReactNode; sidebar?: boolean }) {
   return (
     <Box sx={styles.container}>
       <AppBar position="fixed">
@@ -22,7 +22,7 @@ function Layout({ children }: { children: React.ReactNode }) {
       </AppBar>
 
       <Box sx={styles.content}>
-        <Sidebar />
+        {sidebar && <Sidebar />}
 
         <Box sx={styles.children}>{children}</Box>
       </Box>

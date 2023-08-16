@@ -74,3 +74,12 @@ export const isStartDateGreaterThanEndDate = (startDate: string, endDate: string
     return false;
   }
 };
+
+export const checkIfActive = (date: string) => {
+  const givenDate = new Date(date);
+
+  const today = new Date();
+  const todayWithoutTime = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+
+  return givenDate > todayWithoutTime;
+};

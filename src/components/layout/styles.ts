@@ -44,6 +44,7 @@ const styles = {
     height: '100%',
     width: '100%',
     padding: '20px',
+    background: '#f7f7f7',
   },
   linkItem: {
     width: '100%',
@@ -51,7 +52,6 @@ const styles = {
   linkText: {
     color: '#1890FF',
     fontSize: '14px',
-    fontWeight: '600',
     backgroundColor: 'rgba(145, 158, 171, 0.08)',
     padding: '15px 20px',
     borderRadius: '7px',

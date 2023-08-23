@@ -20,7 +20,7 @@ import { addEvent } from 'lib/redux/events.slice';
 import { toast } from 'react-toastify';
 import CircularProgress from '@mui/material/CircularProgress';
 import { isStartDateGreaterThanEndDate } from 'lib/helpers';
-// import { AppRoutes } from 'lib/constants';
+import { useQueryClient } from '@tanstack/react-query';
 
 const CreateEvent = ({ children }: { children: React.ReactNode }) => {
   const [open, setOpen] = React.useState(false);
@@ -36,6 +36,8 @@ const CreateEvent = ({ children }: { children: React.ReactNode }) => {
     });
   };
 
+  const queryClient = useQueryClient();
+
   const [startDate, setStartDate] = React.useState<any>(dayjs(new Date()));
   const [endDate, setEndDate] = React.useState<any>(dayjs(new Date().setDate(new Date().getDate() + 3)));
   const [name, setName] = React.useState('');
@@ -45,7 +47,7 @@ const CreateEvent = ({ children }: { children: React.ReactNode }) => {
     setName('');
     setEndDate(dayjs(new Date().setDate(new Date().getDate() + 3)));
     setStartDate(dayjs(new Date()));
-    
+
     const params = queryString.parse(location.search);
     delete params.event;
     history({
@@ -72,6 +74,7 @@ const CreateEvent = ({ children }: { children: React.ReactNode }) => {
       const res = await createEvent(payload).unwrap();
 
       dispatch(addEvent({ ...res }));
+      queryClient.invalidateQueries(['upcoming-events']);
       toast.success('Event created!');
       handleClose();
     } catch (error) {

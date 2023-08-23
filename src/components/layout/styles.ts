@@ -4,6 +4,10 @@ const styles = {
     width: '100vw',
     overflow: 'hidden',
   },
+  content: {
+    marginTop: '60px',
+    height: '100%',
+  },
   menuList: {
     width: 300,
   },
@@ -27,23 +31,18 @@ const styles = {
     display: 'flex',
     justifyContent: 'space-between',
   },
-  content: {
-    display: 'flex',
-    marginTop: '60px',
-    height: 'calc(100vw - 60px)',
-    overflowY: 'auto',
-    overflowX: 'hidden',
-  },
+
   sidebar: {
     width: '300px',
     overflow: 'hidden',
-    height: '100%',
+    height: 'calc(100vw - 60px)',
     padding: '40px 30px',
   },
   children: {
-    height: '100%',
     width: '100%',
     padding: '20px',
+    overflow: 'auto',
+    height: '100%',
     background: '#f7f7f7',
   },
   linkItem: {

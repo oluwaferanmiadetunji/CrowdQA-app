@@ -8,21 +8,11 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { formatDate, checkIfActive } from 'lib/helpers';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-
-const event = {
-  id: 'b8370dbd-5a6b-4068-b8b8-6c951352811e',
-  created_at: '2023-08-14T16:24:31.469462Z',
-  updated_at: '2023-08-14T16:24:31.469462Z',
-  name: 'Pigflax Conference',
-  start_date: '2023-08-24T12:45:06Z',
-  end_date: '2023-08-24T23:28:26Z',
-  user_id: '093f607f-70e6-44d4-9779-cf40c04990be',
-  event_code: 919464,
-};
+import { EventType } from 'types/events';
 
 const getColor = (status?: boolean) => (status ? 'green' : 'grey');
 
-const EventCard = () => {
+const EventCard = ({ event }: { event: EventType }) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -33,7 +23,7 @@ const EventCard = () => {
   };
 
   return (
-    <IconButton sx={styles.container}>
+    <Box sx={styles.container}>
       <Box sx={styles.first}>
         <IconButton sx={styles.icon}>
           <CalendarTodayIcon fontSize="small" sx={{ color: getColor(checkIfActive(event?.end_date)) }} />
@@ -85,7 +75,7 @@ const EventCard = () => {
           <Typography sx={styles.menuItemText}>Delete</Typography>
         </MenuItem>
       </Menu>
-    </IconButton>
+    </Box>
   );
 };
 

@@ -1,8 +1,10 @@
 const styles = {
   container: {
-    marginTop: '20px',
+    marginTop: '50px',
     width: '100%',
     padding: '10px',
+    height: '100%',
+    marginBottom: '30px',
   },
   header: {
     display: 'flex',

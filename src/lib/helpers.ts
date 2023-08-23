@@ -83,3 +83,20 @@ export const checkIfActive = (date: string) => {
 
   return givenDate > todayWithoutTime;
 };
+
+export const parseDataFromQuery = (
+  payload: { data: any[]; count: number; page: number; total_pages: number; limit: number }[]
+) => {
+  if (!payload) {
+    return [];
+  }
+
+  let data = [];
+
+  for (let i = 0; i < payload.length; i++) {
+    const newData: any = data.concat(payload[i].data);
+    data = newData;
+  }
+
+  return data;
+};

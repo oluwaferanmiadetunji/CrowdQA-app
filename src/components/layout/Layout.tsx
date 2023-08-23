@@ -1,6 +1,7 @@
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
 import Toolbar from '@mui/material/Toolbar';
 import Container from '@mui/material/Container';
 import AdbIcon from '@mui/icons-material/Adb';
@@ -21,11 +22,11 @@ function Layout({ children, sidebar = true }: { children: React.ReactNode; sideb
         </Container>
       </AppBar>
 
-      <Box sx={styles.content}>
+      <Stack direction="row" sx={styles.content}>
         {sidebar && <Sidebar />}
 
         <Box sx={styles.children}>{children}</Box>
-      </Box>
+      </Stack>
     </Box>
   );
 }

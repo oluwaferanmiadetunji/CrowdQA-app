@@ -9,6 +9,25 @@ import store from 'lib/redux';
 import { Provider } from 'react-redux';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import axios from 'axios';
+import jwtDecode from 'jwt-decode';
+import { getTokenFromLocalStorage } from 'lib/helpers';
+import { AppRoutes, API_URL } from 'lib/constants';
+import { logout } from 'lib/redux/auth.slice';
+
+axios.defaults.baseURL = API_URL;
+
+const token = getTokenFromLocalStorage();
+
+if (!!token) {
+  const decodedToken: any = jwtDecode(token);
+  if (decodedToken.exp * 1000 < Date.now()) {
+    store.dispatch(logout(null));
+    window.location.href = AppRoutes.LOGIN;
+  } else {
+    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+  }
+}
 
 function App() {
   const queryClient = new QueryClient({

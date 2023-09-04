@@ -21,6 +21,7 @@ import { toast } from 'react-toastify';
 import CircularProgress from '@mui/material/CircularProgress';
 import { isStartDateGreaterThanEndDate } from 'lib/helpers';
 import { useQueryClient } from '@tanstack/react-query';
+import { AppRoutes } from 'lib/constants';
 
 const CreateEvent = ({ children }: { children: React.ReactNode }) => {
   const [open, setOpen] = React.useState(false);
@@ -77,6 +78,7 @@ const CreateEvent = ({ children }: { children: React.ReactNode }) => {
       queryClient.invalidateQueries(['upcoming-events']);
       toast.success('Event created!');
       handleClose();
+      history(`${AppRoutes.EVENT}/${res?.id}`);
     } catch (error) {
       const err: any = error;
 

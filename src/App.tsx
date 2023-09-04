@@ -53,7 +53,6 @@ function App() {
                 hideProgressBar
                 newestOnTop={false}
                 closeOnClick
-                theme="dark"
                 pauseOnFocusLoss={false}
                 pauseOnHover={false}
               />

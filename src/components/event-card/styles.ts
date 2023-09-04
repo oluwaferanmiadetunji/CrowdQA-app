@@ -9,10 +9,15 @@ const styles = {
     alignItems: 'center',
     marginBottom: '20px',
     boxShadow: '3px 3px 3px rgba(0, 0, 0, 0.1)',
+    cursor: 'pointer',
+    '&:hover': {
+      boxShadow: '4px 4px 4px 4px rgba(0, 0, 0, 0.1)',
+    },
   },
   first: {
     display: 'flex',
     alignItems: 'center',
+    width: '100%',
   },
   flex: {
     display: 'flex',
@@ -43,6 +48,7 @@ const styles = {
   },
   menuIcon: {
     color: 'grey',
+    zIndex: 10,
     '&:hover': {
       color: '#1890FF',
     },

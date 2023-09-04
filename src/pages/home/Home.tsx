@@ -9,12 +9,13 @@ import { getFirstName } from 'lib/helpers';
 import CreateEvent from 'components/create-event';
 import AddIcon from '@mui/icons-material/Add';
 import ActiveEvents from './components/active-events';
+import PastEvents from './components/past-events';
 
 const Home = () => {
   const { userInfo } = useSelector((state: any) => state.auth);
 
   return (
-    <Layout sidebar>
+    <Layout>
       <Box sx={styles.container}>
         <Card sx={styles.welcome}>
           <Box>
@@ -38,6 +39,8 @@ const Home = () => {
         </Card>
 
         <ActiveEvents />
+
+        <PastEvents />
       </Box>
     </Layout>
   );

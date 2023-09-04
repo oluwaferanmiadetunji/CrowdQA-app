@@ -7,24 +7,19 @@ import EventCard from 'components/event-card';
 import EventCardSkeleton from 'components/skeletons/events/EventCardSkeleton';
 import useFetchInfiniteQuery from 'lib/hooks/useFetchInfiniteQuery';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import NoEvent from 'components/empty/Event';
 
-const ActiveEvents = () => {
-  const {
-    data: events,
-    fetchNextPage,
-    hasNextPage,
-    isFetching,
-    status,
-  } = useFetchInfiniteQuery({
-    key: 'upcoming-events',
-    url: '/events/upcoming',
+const PastEvents = () => {
+  const { data: events, fetchNextPage, hasNextPage, isFetching, status } = useFetchInfiniteQuery({
+    key: 'past-events',
+    url: '/events',
   });
 
-  return (
+  return events && events.length < 1 ? (
+    <Box />
+  ) : (
     <Box sx={styles.container}>
       <Box sx={styles.header}>
-        <Typography sx={styles.headerText}>Active and upcoming</Typography>
+        <Typography sx={styles.headerText}>Past</Typography>
       </Box>
 
       {status === 'loading' && (
@@ -37,8 +32,6 @@ const ActiveEvents = () => {
 
       {status === 'success' && (
         <Fragment>
-          {events && events.length < 1 && <NoEvent />}
-
           <Box sx={styles.events}>
             {events && events?.map((event: any) => <EventCard event={event} key={event.id} />)}
           </Box>
@@ -59,4 +52,4 @@ const ActiveEvents = () => {
   );
 };
 
-export default ActiveEvents;
+export default PastEvents;

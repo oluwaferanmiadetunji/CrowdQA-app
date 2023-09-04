@@ -7,6 +7,7 @@ import PrivateRoute from 'components/routes/PrivateRoute';
 const Home = lazy(() => import('pages/home'));
 const Signup = lazy(() => import('pages/signup'));
 const Login = lazy(() => import('pages/login'));
+const SingleEvent = lazy(() => import('pages/event'));
 
 const router = createBrowserRouter([
   {
@@ -14,6 +15,14 @@ const router = createBrowserRouter([
     element: (
       <PrivateRoute>
         <Home />
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: AppRoutes.SINGLE_EVENT,
+    element: (
+      <PrivateRoute>
+        <SingleEvent />
       </PrivateRoute>
     ),
   },

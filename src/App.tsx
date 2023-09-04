@@ -44,7 +44,7 @@ function App() {
       <ThemeProvider>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <Suspense fallback={<Loader />}>
-            <QueryClientProvider client={queryClient} contextSharing>
+            <QueryClientProvider client={queryClient}>
               <Routes />
 
               <ToastContainer

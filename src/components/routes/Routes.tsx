@@ -8,6 +8,9 @@ const Home = lazy(() => import('pages/home'));
 const Signup = lazy(() => import('pages/signup'));
 const Login = lazy(() => import('pages/login'));
 const SingleEvent = lazy(() => import('pages/event'));
+const SingleEventAnalytics = lazy(() => import('pages/event-analytics'));
+const SingleEventPolls = lazy(() => import('pages/event-polls'));
+const SingleEventQA = lazy(() => import('pages/event-qa'));
 
 const router = createBrowserRouter([
   {
@@ -25,6 +28,20 @@ const router = createBrowserRouter([
         <SingleEvent />
       </PrivateRoute>
     ),
+    children: [
+      {
+        path: 'analytics',
+        element: <SingleEventAnalytics />,
+      },
+      {
+        path: '',
+        element: <SingleEventPolls />,
+      },
+      {
+        path: 'questions',
+        element: <SingleEventQA />,
+      },
+    ],
   },
   {
     path: AppRoutes.SIGNUP,

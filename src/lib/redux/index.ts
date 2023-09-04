@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import authReducer from './auth.slice';
-import eventReducer from './events.slice';
+import eventsReducer from './events.slice';
+import eventReducer from './event.slice';
 import { fetchBaseQuery, createApi } from '@reduxjs/toolkit/query/react';
 import { API_URL } from 'lib/constants';
 import { getTokenFromLocalStorage } from 'lib/helpers';
@@ -26,7 +27,8 @@ const store = configureStore({
   reducer: {
     [apiSlice.reducerPath]: apiSlice.reducer,
     auth: authReducer,
-    events: eventReducer,
+    events: eventsReducer,
+    event: eventReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(apiSlice.middleware),
   devTools: true,
